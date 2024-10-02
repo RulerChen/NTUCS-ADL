@@ -60,7 +60,7 @@ python ./span.py --max_seq_length 512 --pad_to_max_length --context_file ./data/
 ## Predict
 
 ```bash
-python ./predict.py --output_file ./output/predict/1/predictions.csv     --context_file ./data/context.json --test_file ./data/test.json --max_seq_length 512 --pad_to_max_length --selection_model_name_or_path ./output/select/1 --extra_model_name_or_path ./output/span/1 --max_answer_length 40 --n_best_size 40
+python ./predict.py --output_file ./output/predict/1/predictions.csv --context_file ./data/context.json --test_file ./data/test.json --max_seq_length 512 --pad_to_max_length --selection_model_name_or_path ./output/select/1 --extra_model_name_or_path ./output/span/1 --max_answer_length 40 --n_best_size 40
 ```
 
 ## End-to-End
