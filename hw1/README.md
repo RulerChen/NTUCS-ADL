@@ -84,7 +84,7 @@ python ./selection.py --max_seq_length 512 --pad_to_max_length --context_file ./
 ## Use Script
 
 ```bash
-./dwonload.sh
+./download.sh
 
 ./run.sh ./data/context.json ./data/test.json ./prediction.csv
 ```
