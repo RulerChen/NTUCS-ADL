@@ -60,7 +60,7 @@ python ./span.py --max_seq_length 512 --pad_to_max_length --context_file ./data/
 ## Predict
 
 ```bash
-python ./predict.py --output_file ./output/predict/1/predictions.csv --max_seq_length 512 --pad_to_max_length --selection_model_name_or_path ./output/select/1 --extra_model_name_or_path ./output/span/1 --max_answer_length 40 --n_best_size 40
+python ./predict.py --output_file ./output/predict/1/predictions.csv     --context_file ./data/context.json --test_file ./data/test.json --max_seq_length 512 --pad_to_max_length --selection_model_name_or_path ./output/select/1 --extra_model_name_or_path ./output/span/1 --max_answer_length 40 --n_best_size 40
 ```
 
 ## End-to-End
@@ -79,4 +79,12 @@ python ./plot.py --max_seq_length 512 --pad_to_max_length --context_file ./data/
 
 ```bash
 python ./selection.py --max_seq_length 512 --pad_to_max_length --context_file ./data/context.json --train_file ./data/train.json --validation_file ./data/valid.json --model_type bert --tokenizer_name hfl/chinese-macbert-base --gradient_accumulation_steps 16 --per_device_train_batch_size 2 --per_device_eval_batch_size 2 --learning_rate 5e-5 --num_train_epochs 1 --lr_scheduler_type cosine --output_dir ./output/select/100 --seed 42
+```
+
+## Use Script
+
+```bash
+./dwonload.sh
+
+./run.sh ./data/context.json ./data/test.json ./prediction.csv
 ```
