@@ -1,0 +1,41 @@
+[tool.poetry]
+name = "adl"
+version = "0.1.0"
+description = "test"
+authors = ["RulerChen <a20196780@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.10.11"
+numpy = "<2.0"
+pandas = "^2.2.2"
+torch = "2.1.0"
+scikit-learn = "1.5.1"
+nltk = "3.9.1"
+tqdm = "^4.66.5"
+transformers = "4.44.2"
+datasets = "2.21.0"
+accelerate = "0.34.2"
+evaluate = "^0.4.3"
+matplotlib = "^3.9.2"
+gdown = "^5.2.0"
+
+
+[tool.poetry.group.dev.dependencies]
+flake8 = "^7.1.1"
+black = "^24.8.0"
+mypy = "^1.11.2"
+ipdb = "^0.13.13"
+isort = "^5.13.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.isort]
+profile = "black"
+
+[tool.black]
+line-length = 88
+target-version = ['py310']
