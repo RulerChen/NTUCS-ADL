@@ -14,7 +14,7 @@ python ./predict.py \
     --test_file $TEST_PATH \
     --max_seq_length 512 \
     --pad_to_max_length \
-    --selection_model_name_or_path ./select \ 
+    --selection_model_name_or_path ./select \
     --extra_model_name_or_path ./span \
     --max_answer_length 40 \
     --n_best_size 40 \
