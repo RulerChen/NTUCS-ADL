@@ -11,6 +11,14 @@
 - End-to-End (on validation set): 0.399
 - Kaggle Score: 0.787 / X
 
+## Install
+
+```bash
+poetry install
+
+poetry shell
+```
+
 ## File Structure
 
 `endtoend.py`: End-to-End 模型
