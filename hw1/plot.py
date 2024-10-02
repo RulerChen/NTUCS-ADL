@@ -1167,7 +1167,7 @@ def main():
                 )
 
     # plot loss
-    steps = [i * 500 for i in range(len(train_loss_list))]
+    steps = [(i + 1) * 500 for i in range(len(train_loss_list))]
     plt.figure(figsize=(12, 8))
     plt.plot(
         steps,
