@@ -30,7 +30,7 @@ poetry install
 `span.py`: 答案選擇模型
 `utils_qa.py`: 輔助函數
 
-```bashs
+```bash
 ├─ data
 │  ├─ context.json
 │  ├─ test.json
