@@ -14,9 +14,11 @@
 ## Install
 
 ```bash
-poetry install
+pyenv install 3.10.11
+pyenv local 3.10.11
 
-poetry shell
+poetry env use 3.10.11
+poetry install
 ```
 
 ## File Structure
