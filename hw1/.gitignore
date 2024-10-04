@@ -1,5 +1,9 @@
 /output
+/select
+/span
+
 
 report.md
 res.md
 *.zip
+predict.csv
