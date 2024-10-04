@@ -24,12 +24,12 @@ poetry shell
 
 ## File Structure
 
-`endtoend.py`: End-to-End 模型
-`plot.py`: 繪製圖表
-`predict.py`: 預測答案
-`selection.py`: 段落選擇模型
-`span.py`: 答案選擇模型
-`utils_qa.py`: 輔助函數
+- `selection.py`: 段落選擇模型
+- `span.py`: 答案選擇模型
+- `utils_qa.py`: 輔助函數
+- `predict.py`: 預測答案
+- `plot.py`: 繪製圖表
+- `endtoend.py`: End-to-End 模型
 
 ```bash
 ├─ data
