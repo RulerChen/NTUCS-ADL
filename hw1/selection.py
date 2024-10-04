@@ -463,8 +463,7 @@ def main():
     def preprocess_function(examples):
         first_sentences = [[question] * 4 for question in examples["question"]]
         second_sentences = [
-            [context[examples["paragraphs"][i][paragraph]] for paragraph in range(4)]
-            for i in range(len(examples["paragraphs"]))
+            [context[p] for p in paragraph] for paragraph in examples["paragraphs"]
         ]
         labels = [
             examples["paragraphs"][i].index(paragraph)

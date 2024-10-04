@@ -19,6 +19,7 @@ pyenv local 3.10.11
 
 poetry env use 3.10.11
 poetry install
+poetry shell
 ```
 
 ## File Structure
