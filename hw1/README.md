@@ -20,6 +20,8 @@ pyenv local 3.10.11
 poetry env use 3.10.11
 poetry install
 poetry shell
+
+pip install torchvision==0.16.0 torchaudio==2.1.0 --index-url https://download.pytorch.org/whl/cu118
 ```
 
 ## File Structure
