@@ -3,7 +3,6 @@ import logging
 import os
 
 import datasets
-import nltk
 import torch
 import transformers
 from accelerate import Accelerator
@@ -24,17 +23,6 @@ from transformers.utils import is_offline_mode
 from utils import data_to_jsonl, jsonl_to_data
 
 logger = get_logger(__name__)
-
-try:
-    nltk.data.find("tokenizers/punkt")
-except (LookupError, OSError):
-    if is_offline_mode():
-        raise LookupError(
-            "Offline mode: run this script without TRANSFORMERS_OFFLINE first to download nltk data files"
-        )
-    with FileLock(".lock") as lock:
-        nltk.download("punkt", quiet=True)
-        nltk.download("punkt_tab", quiet=True)
 
 
 def parse_args():

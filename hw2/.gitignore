@@ -1,6 +1,7 @@
 /output
 /data
 /predict
+/model
 
 report.md
 res.md
