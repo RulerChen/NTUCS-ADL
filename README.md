@@ -14,16 +14,16 @@ NTU CSIE 5431 ADL Programming Assignment 2024 Fall
 
 - HW1 :
 
-| Basline | EM Score |
-|:-------:|:--------:|
-| Public  |  0.787   |
-| Private | 0.79528  |
+| Baseline | EM Score |
+|:--------:|:--------:|
+|  Public  |  0.787   |
+| Private  | 0.79528  |
 
 - HW2 :
 
-| Basline | Rouge1 | Rouge2 | RougeL |
-|:-------:| ------ | ------ | ------ |
-| Public  | 24.90  | 9.983  | 22.35  |
-| Private | 00.00  | 00.00  | 00.00  |
+| Baseline | Rouge1 | Rouge2 | RougeL |
+|:--------:| ------ | ------ | ------ |
+|  Public  | 24.90  | 9.983  | 22.35  |
+| Private  | 00.00  | 00.00  | 00.00  |
 
 - HW3 :
