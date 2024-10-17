@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "hw3"
+version = "0.1.0"
+description = ""
+authors = ["RulerChen <a20196780@gmail.com>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.10"
+torch = {version = "2.4.1+cu124", source = "torch"}
+transformers = "4.45.1,"
+bitsandbytes = "0.44.1,"
+peft = "0.13.0"
+
+
+[[tool.poetry.source]]
+name = "torch"
+url = "https://download.pytorch.org/whl/cu124"
+priority = "supplemental"
+
+
+[tool.poetry.group.dev.dependencies]
+isort = "^5.13.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
