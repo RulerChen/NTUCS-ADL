@@ -40,7 +40,7 @@ python ./summary.py --train_file ./data/train.jsonl --model_name_or_path google/
 python ./predict.py --test_file ./data/public.jsonl --model_name_or_path ./output/1 --text_column maintext --summary_column title --max_source_length 512 --max_target_length 64 --pad_to_max_length --per_device_test_batch_size 4 --strategy beam_search --num_beams 10 --output_file ./predict/1.jsonl
 ```
 
-## eval
+## Eval
 
 ```bash
 python ./eval.py -r ./data/public.jsonl -s ./predict/1.jsonl
