@@ -12,6 +12,10 @@ torch = {version = "2.4.1+cu124", source = "torch"}
 transformers = "4.45.1,"
 bitsandbytes = "0.44.1,"
 peft = "0.13.0"
+evaluate = "^0.4.3"
+sentencepiece = "^0.2.0"
+protobuf = "^5.28.2"
+datasets = "^3.0.1"
 
 
 [[tool.poetry.source]]

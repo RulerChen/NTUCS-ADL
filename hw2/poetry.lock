@@ -2619,6 +2619,22 @@ files = [
 six = "*"
 
 [[package]]
+name = "rouge-score"
+version = "0.1.2"
+description = "Pure python implementation of ROUGE-1.5.5."
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "rouge_score-0.1.2.tar.gz", hash = "sha256:c7d4da2683e68c9abf0135ef915d63a46643666f848e558a1b9f7ead17ff0f04"},
+]
+
+[package.dependencies]
+absl-py = "*"
+nltk = "*"
+numpy = "*"
+six = ">=1.14.0"
+
+[[package]]
 name = "rsa"
 version = "4.9"
 description = "Pure-Python RSA implementation"
@@ -4074,4 +4090,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "d41b44cf1f1fdfa8cd4c7a29604bf0db27a507021696c41490de1a111310c05e"
+content-hash = "c90c469ae203baa1ccbac888d52ccdfaa50b94af06c404c7d31e7358ef3c4546"
