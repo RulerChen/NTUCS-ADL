@@ -9,7 +9,7 @@
 - Paragraph Selection (on validation set): 0.967
 - Span Selection (on validation set): 0.825
 - End-to-End (on validation set): 0.399
-- Kaggle Score: 0.787 / X
+- Kaggle Score: 0.787 / 0.79528
 
 ## Install
 
@@ -20,8 +20,6 @@ pyenv local 3.10.11
 poetry env use 3.10.11
 poetry install
 poetry shell
-
-pip install torchvision==0.16.0 torchaudio==2.1.0 --index-url https://download.pytorch.org/whl/cu118
 ```
 
 ## File Structure
@@ -33,22 +31,6 @@ pip install torchvision==0.16.0 torchaudio==2.1.0 --index-url https://download.p
 - `plot.py`: 繪製圖表
 - `endtoend.py`: End-to-End 模型
 
-```bash
-├─ data
-│  ├─ context.json
-│  ├─ test.json
-│  ├─ train.json
-│  └─ valid.json
-├─ download.sh
-├─ endtoend.py
-├─ plot.py
-├─ predict.py
-├─ README.md
-├─ run.sh
-├─ selection.py
-├─ span.py
-└─ utils_qa.py
-```
 
 ## Paragraph Selection
 
@@ -90,6 +72,8 @@ python ./selection.py --max_seq_length 512 --pad_to_max_length --context_file ./
 
 ```bash
 ./download.sh
+```
 
+```bash
 ./run.sh ./data/context.json ./data/test.json ./prediction.csv
 ```
