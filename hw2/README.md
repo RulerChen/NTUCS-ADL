@@ -11,11 +11,12 @@
 如果要使用 `spacy` 這個套件，需要安裝 [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/zh-hant/visual-cpp-build-tools/) 來編譯 `spacy` 的依賴套件。
 
 ```bash
-pyenv install 3.8.10
-pyenv local 3.8.10
+pyenv install 3.10.11
+pyenv local 3.10.11
 
-pip install torch==2.4.1 torchvision==0.19.1 torchaudio==2.4.1 --index-url https://download.pytorch.org/whl/cu124
-pip install -r requirements.txt
+poetry env use 3.10.11
+poetry install
+poetry shell
 ```
 
 ## File Structure
