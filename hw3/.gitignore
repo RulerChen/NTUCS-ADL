@@ -1,8 +1,8 @@
 /output
 /data
-/predict
-/model
+/adapter_checkpoint
 
 report.md
 res.md
 *.zip
+prediction2.json

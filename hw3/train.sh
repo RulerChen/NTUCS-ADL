@@ -1,15 +1,12 @@
 python train.py \
-    --model_name_or_path "zake7749/gemma-2-2b-it-chinese-kyara-dpo" \
-    --train_dataset_size 5000 \
-    --eval_dataset_size 1000 \
-    --source_max_len 400 \
-    --target_max_len 256 \
+    --model_name_or_path zake7749/gemma-2-2b-it-chinese-kyara-dpo \
+    --train_dataset_size 8000 \
     --dataset ./data/train.json \
-    --bits 4 \
+    --source_max_len 360 \
+    --target_max_len 256 \
     --bf16 \
-    --output_dir ./output \
-    --per_device_train_batch_size 4 \
+    --output_dir ./output/4 \
+    --per_device_train_batch_size 3 \
     --gradient_accumulation_steps 4 \
-    --learning_rate 5e-5 \
-    --lr_scheduler_type constant \
-    --max_steps 100 \
+    --max_steps 500 \
+    --save_steps 50 \

@@ -1,98 +1,89 @@
 import argparse
-import logging
-import os
 import json
 
 import numpy as np
-from transformers import AutoModelForCausalLM, AutoTokenizer
-from peft import PeftModel, LoraConfig
-from datasets import Dataset
 import torch
+from peft import PeftModel
 from tqdm import tqdm
+from transformers import AutoModelForCausalLM, AutoTokenizer
 
 from utils import get_bnb_config, get_prompt
 
 
-logger = logging.getLogger(__name__)
-
-
-def parse_args():
-    parser = argparse.ArgumentParser(description="Instruction Tuning")
-
-    parser.add_argument(
-        "--model_name_or_path",
-        type=str,
-        default="zake7749/gemma-2-2b-it-chinese-kyara-dpo",
-    )
-    parser.add_argument(
-        "--input_file",
-        type=str,
-        default="./data/public_test.json",
-    )
-    parser.add_argument(
-        "--output_file",
-        type=str,
-        default="./output/output.json",
-    )
-    parser.add_argument(
-        "--checkpoint_file", type=str, default="./output/checkpoint-100/"
-    )
-    parser.add_argument("--max_length", type=int, default=512)
-
-    args = parser.parse_args()
-    return args
-
-
-def main():
-    args = parse_args()
-
-    # Setup logging
-    logging.basicConfig(
-        format="%(asctime)s - %(levelname)s - %(name)s -   %(message)s",
-        datefmt="%m/%d/%Y %H:%M:%S",
-        level=logging.INFO,
-    )
-
-    data = Dataset.from_json(args.input_file)
-
-    # Load model and tokenizer
-    model = AutoModelForCausalLM.from_pretrained(
-        args.model_name_or_path,
-        quantization_config=get_bnb_config(),
-        device_map="auto",
-    )
-    tokenizer = AutoTokenizer.from_pretrained(args.model_name_or_path)
-    loraconifg = LoraConfig.from_pretrained(args.checkpoint_file)
-    model = PeftModel(model, loraconifg)
-
-    if torch.cuda.is_available():
-        device = torch.device("cuda")
-
+def generate_predictions(model, tokenizer, data):
     predictions = []
+
     for item in tqdm(data):
-        instruction = item["instruction"]
-
-        inputs = tokenizer(
-            instruction,
-            return_tensors="pt",
-            truncation=True,
-            max_length=args.max_length,
+        instruction = get_prompt(item["instruction"])
+        input_ids = tokenizer(instruction, return_tensors="pt").input_ids.to(
+            model.device
         )
 
-        outputs = model.generate(
-            input_ids=inputs["input_ids"].to(device), max_length=args.max_length
-        )
+        with torch.no_grad():
+            output_ids = model.generate(input_ids=input_ids, max_new_tokens=128)
 
-        decoded_output = tokenizer.decode(outputs[0], skip_special_tokens=True)
+        output_text = tokenizer.decode(output_ids[0], skip_special_tokens=True)
+        outputs = output_text[len(instruction) :].strip()
+
         predictions.append(
-            {"id": item["id"], "instruction": instruction, "output": decoded_output}
+            {
+                "id": item["id"],
+                "output": outputs,
+            }
         )
 
-    with open(args.output_file, "w", encoding="utf-8") as f:
-        json.dump(predictions, f, ensure_ascii=False, indent=4)
-
-    logger.info(f"Predictions saved to {args.output_file}")
+    return predictions
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--base_model_path",
+        type=str,
+        default="",
+        help="Path to the checkpoint of Taiwan-LLM-7B-v2.0-chat.",
+    )
+    parser.add_argument(
+        "--peft_path",
+        type=str,
+        required=True,
+        help="Path to the saved PEFT checkpoint.",
+    )
+    parser.add_argument(
+        "--test_data_path",
+        type=str,
+        required=True,
+        help="Path to test data.",
+    )
+    parser.add_argument(
+        "--output_path",
+        type=str,
+        default="predictions.json",
+        help="Path to save the prediction output.",
+    )
+    args = parser.parse_args()
+
+    bnb_config = get_bnb_config()
+    if args.base_model_path:
+        model = AutoModelForCausalLM.from_pretrained(
+            args.base_model_path,
+            torch_dtype=torch.bfloat16,
+            quantization_config=bnb_config,
+        )
+        tokenizer = AutoTokenizer.from_pretrained(args.base_model_path)
+
+    if tokenizer.pad_token_id is None:
+        tokenizer.pad_token_id = tokenizer.eos_token_id
+
+    model = PeftModel.from_pretrained(model, args.peft_path)
+    model.eval()
+
+    with open(args.test_data_path, "r") as f:
+        data = json.load(f)
+
+    predictions = generate_predictions(model, tokenizer, data)
+
+    with open(args.output_path, "w") as f:
+        json.dump(predictions, f, ensure_ascii=False, indent=2)
+
+    print(f"Predictions saved to {args.output_path}")

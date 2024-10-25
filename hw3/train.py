@@ -21,19 +21,16 @@ import transformers
 from datasets import Dataset, load_dataset
 from packaging import version
 from packaging.version import parse
-from peft import LoraConfig, PeftModel, get_peft_model, prepare_model_for_kbit_training
+from peft import (LoraConfig, PeftModel, get_peft_model,
+                  prepare_model_for_kbit_training)
 from peft.tuners.lora import LoraLayer
 from torch.nn.utils.rnn import pad_sequence
 from tqdm import tqdm
-from transformers import (
-    AutoModelForCausalLM,
-    AutoTokenizer,
-    BitsAndBytesConfig,
-    LlamaTokenizer,
-    Seq2SeqTrainer,
-    set_seed,
-)
+from transformers import (AutoModelForCausalLM, AutoTokenizer,
+                          BitsAndBytesConfig, LlamaTokenizer, Seq2SeqTrainer,
+                          set_seed)
 from transformers.trainer_utils import PREFIX_CHECKPOINT_DIR
+
 from utils import get_bnb_config, get_prompt
 
 
@@ -95,7 +92,7 @@ class DataArguments:
     train_dataset_size: int = field(
         default=4000, metadata={"help": "Size of training dataset."}
     )
-    eval_dataset_size: int = field(
+    eval_dataset_size: float = field(
         default=400, metadata={"help": "Size of validation dataset."}
     )
     max_train_samples: Optional[int] = field(
@@ -645,8 +642,11 @@ def local_dataset(dataset_name):
     else:
         raise ValueError(f"Unsupported dataset format: {dataset_name}")
 
-    split_dataset = full_dataset.train_test_split(test_size=0.1)
-    return split_dataset
+    # logger.info(full_dataset)
+
+    # split_dataset = full_dataset.train_test_split(test_size=args.eval_dataset_size)
+    # return split_dataset
+    return full_dataset
 
 
 def make_data_module(tokenizer: transformers.PreTrainedTokenizer, args) -> Dict:
@@ -698,7 +698,12 @@ def make_data_module(tokenizer: transformers.PreTrainedTokenizer, args) -> Dict:
                         args.dataset_format if args.dataset_format else "input-output"
                     )
                     full_dataset = local_dataset(dataset_name)
-                    return full_dataset
+
+                    dataset = full_dataset.train_test_split(
+                        train_size=args.train_dataset_size, shuffle=True, seed=42
+                    )
+
+                    return dataset
                 except:
                     raise ValueError(f"Error loading dataset from {dataset_name}")
             else:
@@ -745,7 +750,7 @@ def make_data_module(tokenizer: transformers.PreTrainedTokenizer, args) -> Dict:
         elif dataset_format == "input-output":
             dataset = dataset.map(
                 lambda x: {
-                    "input": [get_prompt(ins) for ins in x["instruction"]],
+                    "input": get_prompt(x["instruction"]),
                     "output": x["output"],
                 }
             )
@@ -775,9 +780,6 @@ def make_data_module(tokenizer: transformers.PreTrainedTokenizer, args) -> Dict:
                 test_size=args.eval_dataset_size, shuffle=True, seed=42
             )
             eval_dataset = dataset["test"]
-            dataset = dataset["train"].train_test_split(
-                train_size=args.train_dataset_size, shuffle=True, seed=42
-            )
         if (
             args.max_eval_samples is not None
             and len(eval_dataset) > args.max_eval_samples
@@ -871,6 +873,8 @@ def train():
 
     # Load data and split into train/eval
     data_module = make_data_module(tokenizer=tokenizer, args=args)
+
+    logger.info(f"Training on {len(data_module['train_dataset'])} examples.")
 
     trainer = Seq2SeqTrainer(
         model=model,

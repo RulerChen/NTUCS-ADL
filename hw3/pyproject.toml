@@ -16,6 +16,8 @@ evaluate = "^0.4.3"
 sentencepiece = "^0.2.0"
 protobuf = "^5.28.2"
 datasets = "^3.0.1"
+matplotlib = "^3.9.2"
+gdown = "^5.2.0"
 
 
 [[tool.poetry.source]]
