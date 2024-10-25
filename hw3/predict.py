@@ -1,7 +1,6 @@
 import argparse
 import json
 
-import numpy as np
 import torch
 from peft import PeftModel
 from tqdm import tqdm
