@@ -4,10 +4,9 @@ from transformers import BitsAndBytesConfig
 
 def get_prompt(instruction: str) -> str:
     """Format the instruction as a prompt for LLM."""
-    # LoRA
-    # return f"你是人工智慧助理，以下是用戶和人工智能助理之間的對話。你要對用戶的問題提供有用、安全、詳細和禮貌的回答。USER: {instruction} ASSISTANT:"
+    # return f"你是人工智慧助理，以下是用戶和人工智能助理之間的對話。你要對用戶的問題提供有用、安全、詳細和禮貌的回答。USER: {instruction} ASSISTANT: "
 
-    # Zero-shot
+    # lora & Zero-shot
     return f"你是一個對文言文和白話文非常了解的文學專家，以下是你跟用戶之間的對話，你要依據用戶的提示將內容翻譯成文言文或白話文。 用戶: {instruction} 文學專家: "
 
     # Few-shot

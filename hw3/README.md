@@ -24,6 +24,7 @@ poetry shell
 - `train.py`: 訓練模型
 - `predict.py`: 預測結果
 - `ppl.py`: 評估預測結果
+- `ppl2.py`: 評估 zero-shot 跟 few-shot 的預測結果
 - `plot.py`: 繪製學習曲線
 - `utils.py`: 輔助函數
 
@@ -37,6 +38,12 @@ python train.py --model_name_or_path zake7749/gemma-2-2b-it-chinese-kyara-dpo --
 
 ```bash
 python ppl.py --base_model_path zake7749/gemma-2-2b-it-chinese-kyara-dpo --peft_path ./output/1/checkpoint-350 --test_data_path ./data/public_test.json
+```
+
+## Evaluate (zero-shot & few-shot)
+
+```bash
+python ppl2.py --base_model_path zake7749/gemma-2-2b-it-chinese-kyara-dpo --test_data_path ./data/public_test.json
 ```
 
 ## Predict
