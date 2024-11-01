@@ -30,5 +30,5 @@ NTU CSIE 5431 ADL Programming Assignment 2024 Fall
 
 | Baseline | QLoRA |
 |:--------:|:-----:|
-|  Public  | 25.42 |
+|  Public  | 15.47 |
 | Private  | 00.00 |
