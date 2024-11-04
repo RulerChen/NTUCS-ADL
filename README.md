@@ -24,7 +24,7 @@ NTU CSIE 5431 ADL Programming Assignment 2024 Fall
 | Baseline | Rouge1 | Rouge2 | RougeL |
 |:--------:|:------:|:------:|:------:|
 |  Public  | 24.90  | 9.983  | 22.35  |
-| Private  | 00.00  | 00.00  | 00.00  |
+| Private  | 24.58  | 9.906  | 22.14  |
 
 - HW3 :
 
