@@ -9,6 +9,7 @@ NTU CSIE 5431 ADL Programming Assignment 2024 Fall
 - [HW1](./hw1/README.md) : Chinese Extractive Question Answering (QA)
 - [HW2](./hw2/README.md) : Chinese News Summarization (Title Generation)
 - [HW3](./hw3/README.md) : Instruction Tuning (Classical Chinese)
+- [Final](./final/README.md) : Can LLM learn with incoming streams of questions?
 
 ## Grade
 
@@ -32,3 +33,5 @@ NTU CSIE 5431 ADL Programming Assignment 2024 Fall
 |:--------:|:-----:|
 |  Public  | 15.47 |
 | Private  | 00.00 |
+
+- Final :
