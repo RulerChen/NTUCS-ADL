@@ -1,6 +1,7 @@
 import re
 import sqlite3
 
+
 def nice_look_table(column_names: list, values: list):
     rows = []
     # Determine the maximum width of each column

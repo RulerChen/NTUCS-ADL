@@ -1,12 +1,15 @@
 import os
+
 os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
 os.environ['TOKENIZERS_PARALLELISM'] = 'false'
 import json
-from tqdm import tqdm
-from colorama import Fore, Style
 
+from colorama import Fore, Style
+from tqdm import tqdm
+
+from benchmarks import Bench, load_benchmark
 from utils import merge_dicts
-from benchmarks import load_benchmark, Bench
+
 
 def main(agent, bench_cfg, debug: bool = False, debug_samples: int = 10, use_wandb: bool = False, wandb_name: str = None, wandb_config: dict = None):
     bench_cfg['agent'] = agent

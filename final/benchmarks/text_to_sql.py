@@ -1,12 +1,15 @@
-import os
 import hashlib
+import os
+
 import pandas as pd
-from tqdm import tqdm
-from datasets import Dataset
 from colorama import Fore, Style
+from datasets import Dataset
+from tqdm import tqdm
+
 from .base import Bench
 from .text2sql_utils.sqlite_interpreter import execute_model
 from .text2sql_utils.string_formatter import generate_schema_prompt
+
 
 def create_bird():
     class StreamingBird(GeneralText2SQL):

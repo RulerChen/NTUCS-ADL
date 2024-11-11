@@ -3,6 +3,7 @@ import textwrap
 
 from utils import setup_logger
 
+
 # The base class used for classification and multi-choice questions (MCQs)
 class Agent:
     LOG_KEYS = [

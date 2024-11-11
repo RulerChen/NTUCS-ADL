@@ -1,6 +1,8 @@
-import sys
 import sqlite3
-from func_timeout import func_timeout, FunctionTimedOut
+import sys
+
+from func_timeout import FunctionTimedOut, func_timeout
+
 
 def execute_sql(predicted_sql, ground_truth, db_path, show_num_rows=10):
     conn = sqlite3.connect(db_path)

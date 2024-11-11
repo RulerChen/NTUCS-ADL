@@ -1,11 +1,13 @@
 """Download text-to-SQL datasets and unzip them."""
 import os
-import gdown
 import zipfile
-import requests
-from tqdm import tqdm
 from pathlib import Path
+
+import gdown
+import requests
 from colorama import Fore, Style
+from tqdm import tqdm
+
 
 def download_file(url: str, save_path: str) -> None:
     # Stream the download in chunks

@@ -1,6 +1,8 @@
 from abc import ABC, abstractmethod
 from typing import Any
-from datasets import load_dataset, Dataset
+
+from datasets import Dataset, load_dataset
+
 
 class Bench(ABC):
     """Associated with corresponding Dataset, Feedback, and Metrics"""

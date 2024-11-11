@@ -1,9 +1,11 @@
 import os
+
 os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
 os.environ['TOKENIZERS_PARALLELISM'] = 'false'
+from colorama import Fore, Style, init
 from tqdm import tqdm
+
 from benchmarks import TASKS
-from colorama import init, Fore, Style
 
 # Initialize colorama
 init(autoreset=True)

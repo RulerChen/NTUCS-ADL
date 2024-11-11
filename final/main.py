@@ -1,6 +1,7 @@
 from base import Agent
 from execution_pipeline import main
 
+
 class ClassificationAgent(Agent):
     """
     An agent that classifies text into one of the labels in the given label set.
@@ -90,6 +91,7 @@ class SQLGenerationAgent(Agent):
         
 if __name__ == "__main__":
     from argparse import ArgumentParser
+
     from execution_pipeline import main
 
     parser = ArgumentParser()

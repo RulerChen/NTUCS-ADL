@@ -1,11 +1,13 @@
-import re
-import pandas as pd
 import os
+import re
+
 import evaluate
-from datasets import Dataset
+import pandas as pd
 from colorama import Fore, Style
+from datasets import Dataset
 
 from .base import Bench
+
 
 class MedicalDiagnosisBench(Bench):
     """A task whose x == patient profile and y == diagnosis."""

@@ -35,6 +35,9 @@ priority = "supplemental"
 [tool.poetry.group.dev.dependencies]
 isort = "^5.13.2"
 
+[tool.isort]
+profile = "black"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"

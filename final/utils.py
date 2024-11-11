@@ -1,11 +1,13 @@
-import torch
-import faiss
-import random
 import logging
-import numpy as np
+import random
 from enum import Enum
 from pathlib import Path
-from transformers import AutoTokenizer, AutoModel
+
+import faiss
+import numpy as np
+import torch
+from transformers import AutoModel, AutoTokenizer
+
 
 class JSONLinesHandler(logging.FileHandler):
     def emit(self, record):
