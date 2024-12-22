@@ -40,7 +40,7 @@ Private Baseline : 24
 | Baseline | QLoRA |
 |:--------:|:-----:|
 |  Public  | 15.47 |
-| Private  | 00.00 |
+| Private  | 21.37 |
 
 - Final :
 
