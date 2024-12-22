@@ -43,3 +43,10 @@ Private Baseline : 24
 | Private  | 00.00 |
 
 - Final :
+
+| Baseline | Medical Diagnosis | Text-to-SQL Generation |
+|:--------:|:-----------------:|:----------------------:|
+|  Public  |      0.70521      |        0.35071         |
+| Private  |      0.70918      |        0.20407         |
+
+(Text to SQL 的 Private 有時可以接近 0.23)

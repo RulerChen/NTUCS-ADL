@@ -1,4 +1,5 @@
 # Can LLM learn with incoming streams of questions?
+
 Welcome to the ADL final project! This guide will help you set up your environment, prepare the datasets, and implement your LLM agent. Please read through all instructions carefully.
 
 **(New Feature)** Run with `wandb` to visualize the performance curves during streaming! See the corresponding [section](#recommended-use-weights--biases-to-track-your-experiments) for how to use it.
@@ -20,7 +21,6 @@ pyenv local 3.10.11
 If you need to update Python, visit the [official Python website](https://www.python.org/downloads/).
 
 Next, it's recommended to create a virtual environment:
-
 
 ```bash
 poetry env use 3.10.11
@@ -65,9 +65,10 @@ If any task fails, double-check your setup and ensure all datasets are correctly
 
 ## Write Your Agent Code in `main.py`
 
-### Introduction to Agent Code:
+### Introduction to Agent Code
 
 Your task is to implement AI agents in the `main.py` file. There are two types of agents you need to implement: `ClassificationAgent` and `SQLGenerationAgent`. You need to implement at least three methods:
+
 1. `__init__(self, config: dict) -> None`: Initialize your LLM agent with the given configuration.
    - This method should set up any necessary components for your agent, such as the language model, memory, or other resources.
    - The `config` dictionary may contain parameters like model name, API keys, or other settings.
@@ -84,17 +85,19 @@ Your task is to implement AI agents in the `main.py` file. There are two types o
 
 These methods form the core of your agent's functionality. Implement them carefully, considering the specific requirements of each task (classification or SQL generation) and any learning or adaptation strategies you want to incorporate.
 
-### Example Implementations:
+### Example Implementations
 
 To help you get started, we've provided some example implementations: (you may use the `--debug` flag to test whether the example agent is working properly)
 
 1. Zero-shot Agent (non-streaming baseline, each question solved independently):
+
    ```
    python -m examples.zeroshot --bench_name classification_public --model_name <model_name> --device <device> --output_path <path_to_save_csv>
    python -m examples.zeroshot --bench_name sql_generation_public --model_name <model_name> --device <device> --output_path <path_to_save_csv>
    ```
 
 2. Self-Streaming In-Context Learning (Self-StreamICL) Agent:
+
    ```
    python -m examples.self_streamicl --bench_name classification_public --model_name <model_name> --device <device> --output_path <path_to_save_csv>
    python -m examples.self_streamicl --bench_name sql_generation_public --model_name <model_name> --device <device> --output_path <path_to_save_csv>
@@ -104,6 +107,7 @@ To help you get started, we've provided some example implementations: (you may u
    Work in progress (WIP)
 
 These examples demonstrate different approaches to agent implementation:
+
 - The ZeroShot Agent solves each question independently without learning from previous interactions.
 - The Self-Streaming In-Context Learning Agent uses a RAG (Retrieval-Augmented Generation) approach to learn and improve its performance over time.
 
@@ -116,6 +120,7 @@ You can use Weights & Biases (`wandb`) to track your experiments. The `wandb` li
 ![Figure 1](./assets/wandb_perf_curves.png)
 
 To use `wandb`, you can simply add the `--use_wandb` flag to your command. (Remember to login to `wandb` first by running `wandb login` in the terminal.)
+
 ```
 python -m examples.zeroshot --use_wandb --bench_name <bench_name> --model_name <model_name> --device <device> --output_path <path_to_save_csv>
 ```
@@ -124,10 +129,12 @@ python -m examples.zeroshot --use_wandb --bench_name <bench_name> --model_name <
 
 1. Implement your two agents in `main.py`.
 2. Test your implementation with different datasets:
+
    ```
    python main.py --bench_name "classification_public" --output_path <path_to_save_csv>
    python main.py --bench_name "sql_generation_public" --output_path <path_to_save_csv>
    ```
+
    Replace `dataset_name` with the specific dataset you want to test (e.g., 'bird', 'spider', etc.).
 3. Ensure your code runs without errors and produces expected outputs.
 4. Submit the csv files you've created to the Kaggle competition pages.
@@ -143,4 +150,5 @@ python -m examples.zeroshot --use_wandb --bench_name <bench_name> --model_name <
 Good luck with your implementation!
 
 # TODOs
+
 - [ ] Implement the MAM-StreamICL example agent
