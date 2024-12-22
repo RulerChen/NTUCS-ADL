@@ -49,4 +49,4 @@ Private Baseline : 24
 |  Public  |      0.70521      |        0.35071         |
 | Private  |      0.70918      |        0.20407         |
 
-(Text to SQL 的 Private 有時可以接近 0.23)
+(Text to SQL 的 Private 有時可以接近 0.23，依電腦而異)
